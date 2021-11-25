@@ -1,67 +1,62 @@
 <template>
   <div id="app">
-    <div class="wrapper">
-      <header>My Personal Costs</header>
-      <main>
-        <add-payment-form @addNewPayment="onDataPaymentAdd"/>
-        <payments-display :items="paymentsList" />
-      </main>
-    </div>
+    <header :class="[$style.header]">
+      My personal costs
+    </header>
+    <main>
+      <PaymentForm @add="DataAddet" />
+      <PaymentsList :items="paymentsList" />
+    </main>
   </div>
 </template>
 
 <script>
-import AddPaymentForm from './components/AddPaymentForm.vue';
-import PaymentsDisplay from "./components/PaymentsDisplay.vue";
-
-export default {
-  name: "App",
-  components: {
-    PaymentsDisplay,
-    AddPaymentForm,
-  },
-  data() {
-    return {
-      paymentsList: [],
-    };
-  },
-  methods: {
-    fetchData() {
-      return [
-        {
-          date: "28.03.2020",
-          category: "Food",
-          value: 169,
-        },
-        {
-          date: "24.03.2020",
-          category: "Transport",
-          value: 360,
-        },
-        {
-          date: "24.03.2020",
-          category: "Food",
-          value: 532,
-        },
-      ];
+  import PaymentsList from './components/PaymentsList'
+  import PaymentForm from './components/PaymentForm'
+  export default {
+    name: 'App',
+    components: {
+      PaymentsList,
+      PaymentForm,
     },
-    onDataPaymentAdd(data){
-      this.paymentsList.push(data)
-    }
-  },
-  created(){
-    this.paymentsList = this.fetchData()
+    data() {
+      return {
+        paymentsList: [
+          {
+            date: '21.09.2021',
+            category: 'Food',
+            price: 123,
+          },
+          {
+            date: '20.09.2021',
+            category: 'Food',
+            price: 456,
+          },
+          {
+            date: '19.09.2021',
+            category: 'Food',
+            price: 789,
+          },
+          {
+            date: '18.09.2021',
+            category: 'Food',
+            price: 0,
+          },
+        ],
+      }
+    },
+    methods: {
+      DataAddet(data) {
+        this.paymentsList.push(data)
+      },
+    },
   }
-};
 </script>
 
-<style lang="scss" scoped>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style module>
+  .header {
+    font: 1em sans-serif;
+    font-size: 36px;
+    margin-bottom: 16px;
+  }
 </style>
