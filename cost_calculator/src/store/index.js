@@ -57,70 +57,61 @@ export default new Vuex.Store({
               price: 789,
             },
             {
-              date: '18.09.2021',
+              date: '17.09.2021',
               category: 'Food',
-              price: 150,
+              price: 159,
             },
             {
-                date: '18.09.2021',
+                date: '16.09.2021',
+                category: 'Food',
+                price: 99,
+              },
+              {
+                date: '15.09.2021',
+                category: 'Cinema',
+                price: 400,
+              },
+              {
+                date: '14.09.2021',
+                category: 'Food',
+                price: 33,
+              },
+              {
+                date: '13.09.2021',
+                category: 'Food',
+                price: 9999,
+              },
+              {
+                date: '12.09.2021',
+                category: 'Food',
+                price: 1,
+              },
+              {
+                date: '10.09.2021',
+                category: 'Food',
+                price: 30,
+              },
+              {
+                date: '10.09.2021',
+                category: 'Food',
+                price: 44,
+              },
+              {
+                date: '09.09.2021',
+                category: 'Food',
+                price: 190,
+              },
+              {
+                date: '18.08.2021',
+                category: 'Food',
+                price: 33,
+              },
+              {
+                date: '11.08.2021',
                 category: 'Food',
                 price: 150,
               },
-              {
-                date: '18.09.2021',
-                category: 'Clo',
-                price: 150,
-              },
-              {
-                date: '18.09.2021',
-                category: 'Food',
-                price: 150,
-              },
-              {
-                date: '18.09.2021',
-                category: 'Food',
-                price: 150,
-              },
-              {
-                date: '18.09.2021',
-                category: 'Food',
-                price: 150,
-              },
-              {
-                date: '18.09.2021',
-                category: 'Food',
-                price: 150,
-              },
-              {
-                date: '18.09.2021',
-                category: 'Food',
-                price: 150,
-              },
-              {
-                date: '18.09.2021',
-                category: 'Food',
-                price: 150,
-              },
-              {
-                date: '18.09.2021',
-                category: 'Food',
-                price: 150,
-              },
-              {
-                date: '18.09.2021',
-                category: 'Food',
-                price: 150,
-              },
-              {
-                date: '18.09.2021',
-                category: 'Food',
-                price: 150,
-              },
-              {
-                date: '18.09.2021',
-                category: 'Food',
-                price: 150,
-              },
+              
           ])
         }, 2000)
       })
