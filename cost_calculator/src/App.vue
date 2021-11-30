@@ -2,26 +2,20 @@
   <div id="app">
     <header :class="[$style.header]">
       My personal costs
+      <!-- <router-link to="/dashboard">Dashboard</router-link>
+      <router-link to="/about">About</router-link>
+      <router-link to="/404">404</router-link> -->
     </header>
     <main>
-      <PaymentForm @add="DataAddet" />
-      <PaymentsList :items="paymentsList" />
+      <router-view />
     </main>
   </div>
 </template>
 
 <script>
-  import PaymentsList from './components/PaymentsList'
-  import PaymentForm from './components/PaymentForm'
-
-  import { mapActions } from 'vuex'
-
-  export default {
+import { mapActions } from 'vuex'
+export default {
   name: 'App',
-  components: {
-    PaymentsList,
-    PaymentForm,
-  },
   data() {
     return {
     }
@@ -38,9 +32,9 @@
 </script>
 
 <style module>
-  .header {
-    font: 1em sans-serif;
-    font-size: 36px;
-    margin-bottom: 16px;
-  }
+.header {
+  font: 1em sans-serif;
+  font-size: 36px;
+  margin-bottom: 16px;
+}
 </style>

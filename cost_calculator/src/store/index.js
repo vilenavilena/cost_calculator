@@ -44,74 +44,23 @@ export default new Vuex.Store({
             {
               date: '21.09.2021',
               category: 'Food',
-              price: 123,
+              price: 100,
             },
             {
               date: '20.09.2021',
-              category: 'Food',
-              price: 456,
+              category: 'Transport',
+              price: 100,
             },
             {
               date: '19.09.2021',
-              category: 'Food',
-              price: 789,
+              category: 'Education',
+              price: 100,
             },
             {
-              date: '17.09.2021',
-              category: 'Food',
-              price: 159,
+              date: '18.09.2021',
+              category: 'Entertaiment',
+              price: 100,
             },
-            {
-                date: '16.09.2021',
-                category: 'Food',
-                price: 99,
-              },
-              {
-                date: '15.09.2021',
-                category: 'Cinema',
-                price: 400,
-              },
-              {
-                date: '14.09.2021',
-                category: 'Food',
-                price: 33,
-              },
-              {
-                date: '13.09.2021',
-                category: 'Food',
-                price: 9999,
-              },
-              {
-                date: '12.09.2021',
-                category: 'Food',
-                price: 1,
-              },
-              {
-                date: '10.09.2021',
-                category: 'Food',
-                price: 30,
-              },
-              {
-                date: '10.09.2021',
-                category: 'Food',
-                price: 44,
-              },
-              {
-                date: '09.09.2021',
-                category: 'Food',
-                price: 190,
-              },
-              {
-                date: '18.08.2021',
-                category: 'Food',
-                price: 33,
-              },
-              {
-                date: '11.08.2021',
-                category: 'Food',
-                price: 150,
-              },
-              
           ])
         }, 2000)
       })
