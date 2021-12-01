@@ -1,7 +1,7 @@
 <template>
   <div :class="[$style.wrp]" >
     <button :class="[$style.btn]" @click="formVisible">
-      BACK 
+      CLOSE 
     </button>
 
     <div :class="[$style.addForm]" v-if="addForm">
@@ -15,7 +15,7 @@
 
       <input :class="[$style.inp]" type="number" placeholder="Payment amount" v-model.number.lazy="price" />
       <button :class="[$style.addbtn]" @click="save">
-        ADD &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +
+        SAVE 
       </button>
 
       <button :class="[$style.btnCat]" @click="formCategory">
@@ -26,7 +26,7 @@
     <div :class="[$style.addCategory]" v-if="addCategoriesForm">
       <input :class="[$style.inp]" placeholder="New category" v-model="newCategory" />
       <button :class="[$style.addbtn]" @click="saveCategory">
-        ADD &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +
+        ADD
       </button>
     </div>
 
@@ -48,8 +48,11 @@ export default {
       addCategoriesForm: false
     }
   },
+    props: {
+      index: Number,
+    },
   computed: {
-    ...mapGetters(['getCategoryList']),
+    ...mapGetters(['getCategoryList','getPaymentsList']),
     getCurrentDate () {
       const today = new Date()
       const d = today.getDate()
@@ -59,25 +62,21 @@ export default {
     }
   },
   methods: {
-    ...mapMutations (['addPaymentListData', 'addCategories']),
+    ...mapMutations (['savePaymentListEl', 'addCategories']),
+
     save () {
       const data = {
+        index: this.index,
         date: this.date || this.getCurrentDate,
         category: this.category,
         price: +this.price
       }
       if ( !this.addCategoriesForm && this.category && this.price) {
-      this.addPaymentListData(data)
-      this.price = ''
-      this.date = ''
-      this.category = ''
-      this.$router.replace({ name: 'dashboard'})
+      this.savePaymentListEl(data)
       this.$modal.close()
       }
-      // const {date, category, price} = this
-      // this.addPaymentListData({date, category, price})
-
     },
+
     saveCategory () {
       const { newCategory } = this
       if (newCategory) {
@@ -87,36 +86,26 @@ export default {
         this.newCategory = ''
         this.addCategoriesForm = !this.addCategoriesForm
     },
-    formVisible() {
-      console.log('formVisible')
-      this.$router.replace({ name: 'dashboard'})
-      this.$modal.close()
 
-      this.addForm = !this.addForm
-      this.addCategoriesForm = false
-      this.price = ''
-      this.date = ''
-      this.category = ''
-      this.newCategory = ''
+    formVisible() {
+      this.$modal.close()
     },
     formCategory () {
       this.addCategoriesForm = !this.addCategoriesForm
     }
   },
   mounted () {
-    this.date =this.date || this.getCurrentDate
-    this.category = this.$route.params.category
-    this.price = this.$route.query.value
-    if ( !this.addCategoriesForm && this.category && this.price) {
-      this.save()
-    }
+    let el = this.getPaymentsList[this.index]
+    this.date = el.date
+    this.category = el.category
+    this.price = el.price
   },
 }
 </script>
 
 <style module>
 .wrp {
-  position: relative;
+  margin: 10px;
 }
 .addForm {
   position: absolute;
@@ -126,7 +115,10 @@ export default {
 .addCategory {
   position: absolute;
   top: 92px;
+  border-radius: 5px;
   box-sizing: border-box;
+  background-color: white;
+  color: black;
 }
 .inp {
   margin-bottom: 5px;
@@ -137,15 +129,12 @@ export default {
 }
 .btn {
   border: 2px solid black ;
-  text-decoration: none;
   width: 150px;
   padding: 8px;
   background: rgb(93, 180, 164);
   color: #fff;
   margin-bottom: 16px;
-  margin-right: 16px;
   cursor: pointer;
-
 }
 
 .btnCat {
@@ -154,11 +143,13 @@ export default {
   left: 206px;
   width: 150px;
   padding: 8px;
+  align-self: end;
   background: rgb(93, 180, 164);
   color: #fff;
   text-align: end;
+  margin-bottom: 16px;
+    margin-right: 16px;
   cursor: pointer;
-
 }
 .addbtn {
   width: 150px;
@@ -166,11 +157,7 @@ export default {
   align-self: end;
   background: rgb(93, 180, 164);
   color: #fff;
-  text-align: end;
   margin-left: 6px;
   cursor: pointer;
-}
-.link {
-  display: flex;
 }
 </style>

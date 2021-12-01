@@ -24,7 +24,13 @@ export default new Vuex.Store({
     },
     addCategories (state, payload) {
       state.categoryList.push(payload)
-    }
+    },
+    savePaymentListEl (state, payload) {
+      state.paymentsList.splice(payload.index, 1, {date: payload.date, category: payload.category, price: payload.price})
+    },
+    dellPaymentListData (state, payload) {
+      state.paymentsList.splice(payload, 1)
+    },
   },
 
   getters: {
@@ -42,27 +48,27 @@ export default new Vuex.Store({
         setTimeout(() => {
           resolve([
             {
-              date: '21.09.2021',
+              date: '21.9.2021',
               category: 'Food',
               price: 100,
             },
             {
-              date: '20.09.2021',
+              date: '20.9.2021',
               category: 'Transport',
               price: 100,
             },
             {
-              date: '19.09.2021',
+              date: '19.9.2021',
               category: 'Education',
               price: 100,
             },
             {
-              date: '18.09.2021',
+              date: '18.9.2021',
               category: 'Entertaiment',
               price: 100,
             },
           ])
-        }, 2000)
+        }, 1000)
       })
       .then(res => {
         commit('setPaymentsListData',res)

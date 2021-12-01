@@ -31,6 +31,7 @@
           <td>{{ item.date }}</td>
           <td>{{ item.category }}</td>
           <td>{{ item.price }}</td>
+          <td> <button :class="[$style.dot]" @click="showEditMenu($event,index)">⠇</button> </td>
         </tr>
       </tbody>
     </table>
@@ -40,7 +41,6 @@
       :curPage='page'
       @paginate='onPaginate'
     />
-
   </div>
 </template>
 
@@ -73,6 +73,16 @@ export default {
     onPaginate (p){
       this.page = p
     },
+    showPaymentsForm () {
+    this.$modal.show('PaymentForm')
+    },
+    closePaymentsForm () {
+    this.$modal.close()
+    },
+    showEditMenu (event, index) {
+      index = index + (this.page-1)*this.perPage
+      this.$modal.show('EditMenu', event, index)
+    }
   },
   mounted () {
     this.page = Math.ceil(this.getPaymentsList.length/this.perPage)
@@ -80,6 +90,15 @@ export default {
     if (!this.getCategoryList.length) {
       this.loadCategories()
     }
+  },
+  beforeUpdate () {
+      if (this.curentPage.length === 0 && this.page > 1) {
+        this.page--
+        console.log('page--')
+      }
+  },
+  beforeDestroy () {
+    this.$modal.close()
   }
 }
 </script>
@@ -107,5 +126,10 @@ export default {
   margin-bottom: 16px;
   margin-right: 16px;
 }
-
+.dot {
+  font-size: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 </style>
